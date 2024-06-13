@@ -57,12 +57,14 @@ void IterativeMergeSort(int A[], int n){
  
 int main() {
  
-    int A[] = {3,1,6,9,4,2};
+    int A[] = {3,1,7,8,2,10,8};
     int n = sizeof(A)/sizeof(A[0]);
  
     Print(A, n, "\t\tA");
     IterativeMergeSort(A, n);
     Print(A, n, " Sorted A");
+    int a = sqrt(25);
+    cout<<a;
  
     return 0;
 

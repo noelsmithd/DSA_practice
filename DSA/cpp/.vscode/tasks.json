@@ -1,32 +1,110 @@
+//for MAC
+
+// {
+//     "version": "2.0.0",
+//     "tasks": [
+//         {
+//             "label": "compile",
+//             "type": "shell",
+//             "command": "g++",
+//             "args": [
+//                 "-std=c++17",
+//                 "-o",
+//                 "${fileBasenameNoExtension}",
+//                 "${file}"
+//             ],
+//             "group": {
+//                 "kind": "build",
+//                 "isDefault": false
+//             }
+//         },
+//         {
+//             "label": "compile and run",
+//             "type": "shell",
+//             "command": "g++ -std=c++17 -o ${fileBasenameNoExtension} ${file} && ./${fileBasenameNoExtension} < input.txt > output.txt",
+//             "group": {
+//                 "kind": "build",
+//                 "isDefault": true
+//             }
+//         }
+//     ]
+// }
+
+//for WIN
 {
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "compile",
-            "type": "shell",
-            "command": "g++",
-            "args": [
-                "-std=c++17",
-                "-o",
-                "${fileBasenameNoExtension}",
-                "${file}"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            }
+      {
+        "label": "compile and run",
+        "type": "shell",
+        "command": "",
+        "args": [
+          "copy",
+          "\"${file}\"",
+          "${workspaceFolder}\\jspwTest.cpp",
+          "&&",
+          "g++",
+          "jspwTest.cpp",
+          "-o",
+          "jspwTest",
+          "&&",
+          "jspwTest",
+          "<",
+          "input.txt",
+          ">",
+          "output.txt",
+          "&&",
+          "del",
+          "jspwTest.exe",
+          "&&",
+          "del",
+          "jspwTest.cpp"
+        ],
+        "presentation": {
+          "reveal": "never"
         },
-        {
-            "label": "compile and run",
-            "type": "shell",
-            "command": "g++ -std=c++17 -o ${fileBasenameNoExtension} ${file} && ./${fileBasenameNoExtension} < input.txt > output.txt",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": {
+          "owner": "cpp",
+          "fileLocation": [
+            "relative",
+            "${workspaceRoot}"
+          ],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
         }
+      },
+      {
+        "type": "cppbuild",
+        "label": "C/C++: g++.exe build active file",
+        "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+        "args": [
+          "-fdiagnostics-color=always",
+          "-g",
+          "${file}",
+          "-o",
+          "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        ],
+        "options": {
+          "cwd": "C:\\msys64\\ucrt64\\bin"
+        },
+        "problemMatcher": [
+          "$gcc"
+        ],
+        "group": "build",
+        "detail": "compiler: C:\\msys64\\ucrt64\\bin\\g++.exe"
+      }
     ]
 }
 
 
-//to run: Cmmd+Shift+B (mac) , Ctrl+Shift+B (Win)
+//to run: Cmd+Shift+B (mac) , Ctrl+Shift+B (Win)
